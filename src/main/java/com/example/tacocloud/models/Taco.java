@@ -1,9 +1,12 @@
 package com.example.tacocloud.models;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
+
+import java.util.Date;
 import java.util.List;
 
 // end::allButValidation[]
@@ -12,13 +15,9 @@ import java.util.List;
 @Data
 public class Taco {
 
-    // end::allButValidation[]
-    @NotNull
-    @Size(min = 5, message = "Name must be at least 5 characters long")
-    // tag::allButValidation[]
+    private Long id;
+    private Date createdAt;
+    @NotBlank
     private String name;
-    // end::allButValidation[]
-    @Size(min = 1, message = "You must choose at least 1 ingredient")
-    // tag::allButValidation[]
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
 }

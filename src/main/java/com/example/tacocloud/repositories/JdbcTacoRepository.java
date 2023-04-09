@@ -37,6 +37,7 @@ public class JdbcTacoRepository implements TacoRepository{
         PreparedStatementCreator psc = factory.newPreparedStatementCreator(Arrays.asList(taco.getName(), new Timestamp(taco.getCreatedAt().getTime())));
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbc.update(psc, keyHolder);
+        taco.setId(keyHolder.getKey().longValue());
         return keyHolder.getKey().longValue();
     }
     private void saveIngredientTaco(Ingredient ingredient, long tacoID){
